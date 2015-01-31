@@ -1,0 +1,45 @@
+      <!-- Page Header -->
+      <!-- Set your background image for this header on the line below. -->
+      <header class="intro-header" style="background-image: url('{{static}}img/home.jpg')">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <div class="site-heading">
+                <h1>{{title}}</h1>
+                <hr class="small">
+                <span class="subheading">{{subtitle}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {{#posts}}
+            <div class="post-preview">
+              <a href="{{href}}">
+                <h2 class="post-title">
+                  {{title}}
+                </h2>
+                <h3 class="post-subtitle">
+                  {{subtitle}}
+                </h3>
+              </a>
+              <p class="post-meta">{{attribution}}</p>
+            </div>
+            <hr>
+            {{/posts}}
+            <!-- Pager -->
+<!-- not currently suported
+            <ul class="pager">
+              <li class="next">
+                <a href="#">Older Posts &rarr;</a>
+              </li>
+            </ul>
+-->
+          </div>
+        </div>
+      </div>
