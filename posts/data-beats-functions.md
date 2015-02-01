@@ -96,7 +96,7 @@ data-composition compared to function-composition.
 
 My [bidi routing library](https://github.com/juxt/bidi) embraces the concept
 of using data as much as possible. Bidi contains its own version of our
-Ring protocol, supported by its bidi.ring/make-handler function. (And
+`Ring` protocol, supported by its `bidi.ring/make-handler` function. (And
 yes, bidi comes with a Redirect record, and lots more.)
 
 Bidi allows you to keep your routing data as data, and still use it to
