@@ -9,7 +9,7 @@
    [clj-time "0.9.0"]
    [endophile "0.1.2"]
    [com.stuartsierra/component "0.2.2"]
-   [juxt.modular/bidi "0.7.3"]
+   [juxt.modular/bidi "0.8.1"]
    [juxt.modular/clostache "0.6.1"]
    [juxt.modular/http-kit "0.5.3"]
    [juxt.modular/less "0.1.2"]
