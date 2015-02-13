@@ -18,13 +18,13 @@ one causes a browser to redirect to another URL)
 
 Let's print it out
 
-```
+```clojure-repl
 user> (println (fn [req] {:status 302 :headers {"location" "/index.html"}}))
 ```
 
 This is the sort of thing you'll see on the console
 
-```
+```clojure-repl
 #<user$eval7294$fn__7295 user$eval7294$fn__7295@74310632>
 ```
 
@@ -47,7 +47,7 @@ a Clojure record.
 
 Let's print it out
 
-```
+```clojure-repl
 user> (println (->Redirect 302 "/index.html"))
 ```
 
