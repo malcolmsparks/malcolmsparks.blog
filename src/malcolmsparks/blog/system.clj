@@ -10,7 +10,7 @@
    [tangrammer.component.co-dependency :refer (co-using system-co-using)]
    [modular.maker :refer (make)]
    [malcolmsparks.blog.pages :refer (new-pages)]
-   [modular.bidi :refer (new-redirect new-router new-static-resource-service)]
+   [modular.bidi :refer (new-redirect new-router new-static-resource-service new-archived-resources)]
    [modular.clostache :refer (new-clostache-templater)]
    [modular.http-kit :refer (new-webserver)]
    [modular.less :refer (new-less-compiler)]))
@@ -109,10 +109,9 @@
   [system config]
   (assoc system
     :clean-blog-resources-static
-    (->
-      (make new-static-resource-service config :uri-context "/static/" :resource-prefix "public/")
-      (using [])
-      (co-using []))))
+    (make new-static-resource-service config :uri-context "/static/" :resource-prefix "public/")
+    :highlight-js-resources
+    (make new-archived-resources config :archive (io/resource "highlight.zip") :uri-context "/hljs/")))
 
 (defn clean-blog-website-components
   "A redirect component is added which ensures that / will redirect to
@@ -139,7 +138,6 @@
   (apply system-map
     (apply concat
       (-> {}
-
           (http-listener-components config)
           (modular-bidi-router-components config)
           (clostache-templater-components config)
@@ -151,7 +149,21 @@
 
 (defn new-dependency-map
   []
-  {:http-listener-listener {:request-handler :modular-bidi-router-webrouter}, :modular-bidi-router-webrouter {:twitter-bootstrap :twitter-bootstrap-service, :jquery :jquery-resources, :compiler :less-compiler-compiler, :static :clean-blog-resources-static, :redirect :clean-blog-website-redirect, :pages :clean-blog-website-pages}, :clean-blog-website-pages {:templater :clostache-templater-templater, :resources :clean-blog-resources-static}})
+  {:http-listener-listener
+   {:request-handler :modular-bidi-router-webrouter},
+
+   :modular-bidi-router-webrouter
+   {:twitter-bootstrap :twitter-bootstrap-service
+    :jquery :jquery-resources
+    :compiler :less-compiler-compiler
+    :static :clean-blog-resources-static
+    :redirect :clean-blog-website-redirect
+    :pages :clean-blog-website-pages
+    :highlight-js-resources :highlight-js-resources},
+
+   :clean-blog-website-pages
+   {:templater :clostache-templater-templater,
+    :resources :clean-blog-resources-static}})
 
 (defn new-co-dependency-map
   []
