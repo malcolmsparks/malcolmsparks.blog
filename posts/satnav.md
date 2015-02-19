@@ -1,5 +1,5 @@
-Title: We bought a satnav
-Subtitle: Which doesn't have a network card
+Title: That's it! We're getting a sat-nav!
+Subtitle: I've seen the future, and it's off-line
 Date: 2015-02-18
 Background: img/driving.jpg
 
@@ -34,11 +34,11 @@ behind TomTom.
 
 Actually, the device we got (TomTom GO 50) is far better than the
 previous thing, and the overall experience far exceeds anything on a
-phone.
+phone. We're not looking back.
 
-That got me thinking, trying to understand why I was so happy with the
-purchase. I think the experience showed me how far along the wrong path
-the tech industry has been travelling.
+The experience got me thinking, trying to understand why I was so happy
+with the purchase. I think it showed me how far along the wrong path the
+tech industry has been travelling.
 
 My prediction is that, over the next 25 years, society will change
 course from a frantic march towards a purely online model advocated by

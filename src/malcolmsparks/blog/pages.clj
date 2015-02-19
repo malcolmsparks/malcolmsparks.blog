@@ -70,7 +70,7 @@
                         [k ((case k :date parse-date identity) v)]))))
             (into {})))]
     (let [doc (group-by #(some? (re-matches regex %)) (line-seq (io/reader (io/file "posts" (str post ".md")))))]
-      (let [{:keys [author date] :as meta} (extract-meta (get doc true))]
+      (let [{:keys [author date status] :as meta} (extract-meta (get doc true))]
         (merge
          {:title "" :subtitle ""} ; blank out similar keys in main document
          meta
@@ -78,10 +78,12 @@
            {:attribution (format "Posted%s%s"
                                  (if author (format " by %s" author) "")
                                  (if date (format " on %s" (format-date date)) ""))})
-         {:href (when router (path-for router ::post :post post))
-          :body (->> (get doc false)
-                  (interpose \newline)
-                  (apply str) mp to-clj (process-html router resources) html-string delay)})))))
+         (merge
+          {:href (when router (path-for router ::post :post post))
+           :body (->> (get doc false)
+                      (interpose \newline)
+                      (apply str) mp to-clj (process-html router resources) html-string delay)}
+          (when status {:status status})))))))
 
 (defn get-posts [router resources]
   (sort-by (comp (fnil to-long 0) :date) >
@@ -93,7 +95,10 @@
   (page this "index.html.mustache"
         {:title title
          :subtitle subtitle
-         :posts (get-posts router resources)}
+         :posts (filter #(case (:status %)
+                           "draft" false
+                           true)
+                        (get-posts router resources))}
         req))
 
 (defn post [{:keys [router resources] :as this} req]
